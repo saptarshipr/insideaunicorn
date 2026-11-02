@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inside a Unicorn</title>
+  <meta name="description" content="Inside a Unicorn by Saptarshi Prakash. You've read how startups are founded. Here's what it's like to work inside one.">
+  <meta property="og:title" content="Inside a Unicorn">
+  <meta property="og:description" content="You've read how startups are founded. Here's what it's like to work inside one.">
+  <link rel="canonical" href="https://insideaunicorn.com/">
+  <meta property="og:url" content="https://insideaunicorn.com/">
+  <meta property="og:image" content="https://insideaunicorn.com/images/og-image.jpg">
+  <meta property="og:type" content="book">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Google+Sans+Flex:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f2f2f2;
+      --ink: #000;
+      --muted: rgba(0, 0, 0, .6);
+      --highlight: #ff9900;
+      --serif: "Gowun Batang", Georgia, "Times New Roman", serif;
+      --sans: "Google Sans Flex", "Google Sans", "Helvetica Neue", Arial, sans-serif;
+
+      /* Desktop scale: Figma frame is 1280 wide. Values scale down with the viewport and cap at 1280. */
+      --pad-l: min(8.75vw, 112px);
+      --pad-r: min(6.1vw, 78px);
+      --media-w: min(41.4vw, 530px);
+      --display: clamp(64px, 8.44vw, 108px);
+      --closing: clamp(60px, 7.81vw, 100px);
+      --heading: clamp(40px, 4.375vw, 56px);
+      --body: clamp(18px, 1.875vw, 24px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img { display: block; }
+
+    /* Text selection uses the same orange as the highlight on "inside." (#ff9900 multiplied over the page background) */
+    ::selection { background: #f29100; color: #000; }
+    img::selection { background: transparent; }
+    a { color: inherit; }
+
+    .page { max-width: 1280px; margin: 0 auto; padding-bottom: 135px; }
+
+    .section {
+      display: flex;
+      align-items: center;
+      padding: 80px var(--pad-r) 80px var(--pad-l);
+    }
+    .section--hero { justify-content: space-between; }
+    .section--story, .section--author { gap: 60px; }
+    .section--author { padding-top: 100px; padding-bottom: 100px; }
+    .section--closing { flex-direction: column; align-items: flex-start; gap: 42px; }
+
+    .copy { display: flex; flex-direction: column; gap: 32px; flex: 1 1 0; min-width: 0; }
+    .copy--hero { flex: 0 1 424px; gap: 28px; }
+    .copy__text { display: flex; flex-direction: column; gap: 24px; }
+    .copy--hero .copy__text { gap: 20px; }
+
+    /* Type */
+    .display {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: var(--display);
+      line-height: .9;
+      letter-spacing: -.03em;
+    }
+    .heading {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: var(--heading);
+      line-height: 1.2;
+    }
+    .closing {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: var(--closing);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+    }
+    .lede, .body {
+      font-size: var(--body);
+      line-height: 1.4;
+      color: var(--muted);
+    }
+    .body p + p { margin-top: 16px; }
+
+    .mark { position: relative; white-space: nowrap; }
+    .mark::before {
+      content: "";
+      position: absolute;
+      left: -.04em;
+      right: -.08em;
+      top: .19em;
+      height: .93em;
+      background: var(--highlight);
+      mix-blend-mode: multiply;
+      z-index: -1;
+    }
+    .section--story .heading { position: relative; isolation: isolate; }
+
+    /* Amazon buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 288px;
+      height: 68px;
+      border: 1px solid var(--ink);
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 1.4;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background-color .2s ease, transform .2s ease;
+    }
+    .btn img { height: 30px; width: auto; transform: translateY(4px); }
+    .btn--lg { width: 380px; height: 84px; gap: 14px; }
+    .btn:hover { background: #fff; }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus-visible, .social a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+    /* Media frames: 530 x 636 in Figma. Inner art is positioned in percentages of that frame. */
+    .media {
+      position: relative;
+      flex: 0 0 auto;
+      width: var(--media-w);
+      aspect-ratio: 530 / 636;
+      overflow: hidden;
+    }
+    .media img { position: absolute; max-width: none; }
+    .media .shadow-ellipse { left: -.107%; top: 72.44%; width: 102.62%; height: 29.1%; transform: rotate(1.26deg); }
+    .media .shadow-line-1 { left: 11.89%; top: 78.93%; width: 74.99%; height: 16.21%; }
+    .media .shadow-line-2 { left: 17%; top: 83.03%; width: 65.1%; height: 8.01%; }
+    .media .cover { left: 0; top: -2.516%; width: 100%; height: 100%; object-fit: cover; }
+    .media--illustration { mix-blend-mode: multiply; }
+    .media .illustration { left: -6.98%; top: -18.08%; width: 113.77%; height: 146.86%; object-fit: cover; mix-blend-mode: multiply; }
+    .media .portrait { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+    /* Social */
+    .social { display: flex; gap: 24px; list-style: none; }
+    .social a { position: relative; display: block; width: 68px; height: 68px; overflow: hidden; transition: transform .2s ease; }
+    .social a:hover { transform: translateY(-2px); }
+    .social span { position: absolute; left: 50%; top: 50%; overflow: hidden; transform: translate(-50%, -50%); }
+    .social img { position: absolute; max-width: none; }
+    .social .li { width: 58px; height: 58px; margin-top: 1px; border-radius: 12px; }
+    .social .li img { left: -25.72%; top: -4.33%; width: 154.32%; height: 154.64%; }
+    .social .yt { width: 66px; height: 57px; margin-top: .5px; }
+    .social .yt img { left: -27.27%; top: -.33%; width: 154.55%; height: 100.66%; }
+    .social .ig { width: 56px; height: 56px; border-radius: 16px; }
+    .social .ig img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    /* Mobile (Figma Mweb, 360 wide) */
+    @media (max-width: 820px) {
+      .page { max-width: 480px; padding: 40px 0 72px; display: flex; flex-direction: column; gap: 62px; }
+      .section, .section--author {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+        padding: 0 24px;
+      }
+      .section--hero { gap: 0; }
+      .section--hero .media { margin-bottom: -4px; }
+      .section .media { order: -1; }
+      .section--closing { gap: 24px; }
+      .media { width: 100%; }
+
+      .copy, .copy--hero { flex: none; gap: 24px; }
+      .copy__text, .copy--hero .copy__text { gap: 16px; }
+      .copy--hero { text-align: center; }
+
+      .display { font-size: 60px; letter-spacing: -1.8px; }
+      .heading { font-size: 36px; }
+      .closing { font-size: 52px; letter-spacing: -1.56px; }
+      .closing br { display: none; }
+      .lede, .body { font-size: 16px; }
+
+      .btn, .btn--lg { width: 100%; height: 52px; font-size: 16px; gap: 6px; }
+      .btn img { height: 26px; transform: translateY(5px); }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <section class="section section--hero" aria-labelledby="title">
+      <div class="copy copy--hero">
+        <div class="copy__text">
+          <h1 class="display" id="title">inside a unicorn</h1>
+          <p class="lede">You've read how startups are founded. Here's what it's like to work inside one.</p>
+        </div>
+        <a class="btn" href="https://link.amazon/B0alZPqhm" target="_blank" rel="noopener">
+          Order on <img src="images/amazon.webp" alt="Amazon" width="99" height="30">
+        </a>
+      </div>
+      <div class="media">
+        <img class="shadow-ellipse" src="images/shadow-ellipse.svg" alt="" aria-hidden="true">
+        <img class="shadow-line-1" src="images/shadow-line-1.svg" alt="" aria-hidden="true">
+        <img class="shadow-line-2" src="images/shadow-line-2.svg" alt="" aria-hidden="true">
+        <img class="cover" src="images/book-cover.webp" alt="Cover of Inside a Unicorn: An Honest Account of Life at an Indian Start-up by Saptarshi Prakash" width="800" height="960" fetchpriority="high">
+      </div>
+    </section>
+
+    <section class="section section--story" aria-labelledby="story">
+      <div class="copy">
+        <div class="copy__text">
+          <h2 class="heading" id="story">a startup looks very different from the <span class="mark">inside.</span></h2>
+          <div class="body">
+            <p>For every startup founder, there are hundreds of people who help build the company. But we rarely hear their stories.</p>
+            <p>I've spent eleven years at Housing.com, Zeta and Swiggy, experiencing the excitement, chaos, workplace politics, successes and failures that come with building startups.</p>
+            <p>Inside a Unicorn tells those stories. Not how to build a unicorn, but what it's like to help build one.</p>
+          </div>
+        </div>
+        <a class="btn" href="https://link.amazon/B0alZPqhm" target="_blank" rel="noopener">
+          Order on <img src="images/amazon.webp" alt="Amazon" width="99" height="30">
+        </a>
+      </div>
+      <div class="media media--illustration">
+        <img class="illustration" src="images/illustration.webp" alt="Line illustration of an office: a young employee at a desk with a laptop while a woman serves him tea" width="1000" height="1549" loading="lazy">
+      </div>
+    </section>
+
+    <section class="section section--author" aria-labelledby="author">
+      <div class="copy">
+        <div class="copy__text">
+          <h2 class="heading" id="author">hi, I'm Saptarshi Prakash.</h2>
+          <div class="body">
+            <p>I'm a designer, content creator, and currently Head of Design at Swiggy.</p>
+            <p>I've spent over a decade working at Indian startups, building products, leading teams, and making more than my fair share of mistakes along the way.</p>
+            <p>Inside a Unicorn is my first book, and an attempt to tell some of the stories I've collected over these years.</p>
+          </div>
+        </div>
+        <ul class="social">
+          <li><a href="https://www.linkedin.com/in/saptarshipr" target="_blank" rel="noopener"><span class="li"><img src="images/linkedin.webp" alt=""></span><span class="sr-only">LinkedIn</span></a></li>
+          <li><a href="https://www.youtube.com/@saptarshipr" target="_blank" rel="noopener"><span class="yt"><img src="images/youtube.png" alt=""></span><span class="sr-only">YouTube</span></a></li>
+          <li><a href="https://www.instagram.com/saptarshiux/" target="_blank" rel="noopener"><span class="ig"><img src="images/instagram.webp" alt=""></span><span class="sr-only">Instagram</span></a></li>
+        </ul>
+      </div>
+      <div class="media">
+        <img class="portrait" src="images/saptarshi.webp" alt="Black and white portrait of Saptarshi Prakash sitting on the floor" width="800" height="960" loading="lazy">
+      </div>
+    </section>
+
+    <section class="section section--closing" aria-labelledby="closing">
+      <h2 class="closing" id="closing">curious about life<br> inside a unicorn?</h2>
+      <a class="btn btn--lg" href="https://link.amazon/B0alZPqhm" target="_blank" rel="noopener">
+        Get your copy on <img src="images/amazon.webp" alt="Amazon" width="99" height="30">
+      </a>
+    </section>
+
+  </main>
+</body>
+</html>
