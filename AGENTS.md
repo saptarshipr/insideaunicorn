@@ -17,6 +17,7 @@ Website for *Inside a Unicorn* by Saptarshi Prakash (Penguin Random House India)
 - Layout switches from desktop to mobile at 820px (`@media (max-width: 820px)`).
 - Fonts: Gowun Batang (headings) and Google Sans Flex (body and buttons), both from Google Fonts.
 - Colors: page `#f2f2f2`, text `#000`, body text at 60% black, highlight `#ff9900` with multiply blend. Text selection uses `#f29100` to match the highlight.
+- Light only. `color-scheme: only light` (meta tag and on `html`) stops Chrome's auto dark mode from inverting the page. Keep it unless a real dark theme is designed.
 
 ## Favicon
 
