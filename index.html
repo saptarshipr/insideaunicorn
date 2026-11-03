@@ -7,6 +7,28 @@
   <meta name="description" content="Inside a Unicorn by Saptarshi Prakash (Penguin Random House India). You've read how startups are founded. Here's what it's like to work inside one, from eleven years at Housing.com, Zeta and Swiggy.">
   <meta name="author" content="Saptarshi Prakash">
   <link rel="canonical" href="https://insideaunicorn.com/">
+  <!-- Favicon. favicon.svg is the source. Its background (#FF7700) is the default and the script below swaps it for a random colour on each load. -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" id="favicon">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <script>
+    (function () {
+      var colours = ["#FF7700", "#7B16FF", "#E02881", "#00AC61", "#0055FF", "#00A1E0"];
+      var last;
+      try { last = localStorage.getItem("favicon-colour"); } catch (e) {}
+      var options = colours.filter(function (c) { return c !== last; });
+      var colour = options[Math.floor(Math.random() * options.length)];
+      try { localStorage.setItem("favicon-colour", colour); } catch (e) {}
+      fetch("/favicon.svg")
+        .then(function (r) { return r.text(); })
+        .then(function (svg) {
+          var link = document.getElementById("favicon");
+          if (link) link.href = "data:image/svg+xml," + encodeURIComponent(svg.replace(/#FF7700/i, colour));
+        })
+        .catch(function () {});
+    })();
+  </script>
 
   <!-- Open Graph (LinkedIn, WhatsApp, Facebook) -->
   <meta property="og:site_name" content="Inside a Unicorn">
